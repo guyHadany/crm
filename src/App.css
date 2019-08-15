@@ -31,3 +31,54 @@
     transform: rotate(360deg);
   }
 }
+
+.client{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+ }
+
+ .header{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: yellow;
+ }
+
+ 
+.badgesSection{
+ display: grid;
+ grid-template-columns: repeat(4, 1fr) ;
+}
+.badge{
+ display: grid;
+ grid-template-columns: 1fr 1fr ;
+ grid-template-rows: 1fr 1fr ;
+ grid-template-areas:
+ "i n"
+ "i t";
+}
+.iconBudge{
+ grid-area: i;
+ border-radius: 80%;
+ margin-left: 3vw;
+ color: rgb(79, 182, 84);
+}
+.numberBudge{
+ grid-area: n;
+ font-size: 30px;
+}
+.textBudge{
+ grid-area: t;
+ font-size: 17px;
+ font-weight: bold;
+}
+.fas{
+   font-size: 10vh;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+   width: 70%;
+   padding: 13px;
+}
+
+
+
