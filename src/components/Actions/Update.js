@@ -6,11 +6,11 @@ class Update extends Component {
     constructor() {
         super()
         this.state = {
-          clientName: '',
-          newOwner: '',
-          newEmailType: ''
+            clientName: '',
+            newOwner: '',
+            newEmailType: ''
         }
-      }
+    }
 
     checkDuplicate = (data, key) => {
         let obj = {}
@@ -27,29 +27,29 @@ class Update extends Component {
 
 
     getName = (name) => {
-        this.setState({clientName: name})
+        this.setState({ clientName: name })
     }
 
     handleOwner = (e) => {
         let value = e.target.value
-        this.setState({newOwner: value})
+        this.setState({ newOwner: value })
     }
 
     handleMail = (e) => {
         let value = e.target.value
-        this.setState({newEmailType: value})
+        this.setState({ newEmailType: value })
     }
 
     getClientId = () => {
-        let client = this.props.clients.find(c => c.name.toLowerCase() === this.state.clientName.toLowerCase())  
-        if(!client){
+        let client = this.props.clients.find(c => c.name.toLowerCase() === this.state.clientName.toLowerCase())
+        if (!client) {
             return null
         }
         return client._id
     }
 
     updateOwner = () => {
-        if(!this.getClientId()){
+        if (!this.getClientId()) {
             return alert('not existed client!')
         }
         this.props.update(this.getClientId(), 'owner', this.state.newOwner)
@@ -63,31 +63,31 @@ class Update extends Component {
         this.props.update(this.getClientId(), 'sold', true)
     }
 
-    
+
 
 
 
     render() {
         return (
             <div>
-                <Input clients={this.props.clients} getName={this.getName}/>
-                <div>
+                <Input clients={this.props.clients} getName={this.getName} />
+                <div className="updateSection">
                     <span>Transfer ownership to</span>
                     <select onInput={this.handleOwner}>
-                    {this.checkDuplicate(this.props.clients, 'owner').map((c, i) => <option key={i}>{c[0]}</option>)}
+                        {this.checkDuplicate(this.props.clients, 'owner').map((c, i) => <option key={i}>{c[0]}</option>)}
                     </select>
-                    <button onClick={this.updateOwner}>TRANSFER</button>
+                    <span id='Button' className="actionButton" onClick={this.updateOwner} >TRANSFER</span>
                 </div>
-                <div>
+                <div className="updateSection">
                     <span>Send email:</span>
                     <select onInput={this.handleMail}>
-                    {this.checkDuplicate(this.props.clients, 'emailType').map((c, i) => <option key={i}>{c[0]}</option>)}
+                        {this.checkDuplicate(this.props.clients, 'emailType').map((c, i) => <option key={i}>{c[0]}</option>)}
                     </select>
-                    <button onClick={this.updateEmailType}>SEND</button>
+                    <span id='Button' className="actionButton" onClick={this.updateEmailType}>SEND</span>
                 </div>
-                <div>
+                <div className="updateSectionSold">
                     <span>Declare sale!</span>
-                    <button onClick={this.updateSale}>DECLARE</button>
+                    <span id='Button' className="actionButton" onClick={this.updateSale}>DECLARE</span>
                 </div>
                 <div></div>
             </div>

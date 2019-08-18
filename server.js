@@ -5,7 +5,7 @@ const api = require( './server/routes/api' )
 const bodyParser = require('body-parser') //install
 const mongoose = require ('mongoose')
 
-mongoose.connect("mongodb://localhost/transactionDB", { useNewUrlParser: true })
+mongoose.connect("mongodb://localhost/clientsDB", { useNewUrlParser: true })
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -20,7 +20,7 @@ app.use('/', api)
 
 
 
-let port = 5000
+let port = process.env.PORT || 5000
 
 app.listen(port, function(){
     console.log(`Running on port ${port}`)

@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
 
 class Filter extends Component {
+    constructor() {
+        super()
+        this.state = {
+            category: 'owner'
+        }
+    }
+
+    handleInput = (e) => {
+        this.props.filter(e.target.value, this.state.category)
+    }
+
+    handlSelect = (e) => {
+        let value = e.target.value
+        this.setState({ category: value.toLowerCase() })
+    }
+
     render() {
         return (
-            <div>
-                <input type='text' placeholder='Search'></input>
+            <div className='mainFilter'>
+                <input id='input' value={this.props.value} placeholder="Search" onChange={this.handleInput}></input>
+                <select onInput={this.handlSelect}>
+                    <option>Owner</option>
+                    <option>Name</option>
+                    <option>Email</option>
+                    <option>Sold</option>
+                    <option>Country</option>
+                </select>
             </div>
         );
     }

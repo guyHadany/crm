@@ -24,7 +24,7 @@ class Input extends Component {
             <div>
                <input id='input' list="browsers" name="browser" placeholder="Search Name..." onInput={this.handleInput}></input>
                <datalist id="browsers">
-               {this.props.clients.filter( c => c.name.toLowerCase().includes(this.state.names.toLowerCase())).map((m, i) =><option key={i}> {m.name} </option>)}
+               {this.props.clients.map((m, i) => <option key={i}>{m.name}</option>)} 
                </datalist>
            </div>
         );

@@ -30,7 +30,11 @@ class Add extends Component {
                 {
                     name: `${this.state.Firstname} ${this.state.Surname}`,
                     country: this.state.Country,
-                    owner: this.state.Owner
+                    owner: this.state.Owner,
+                    firstContact: new Date(),
+                    sold: false,
+                    emailType: null,
+                    email: ''
                 }
             )
         }
@@ -47,11 +51,11 @@ class Add extends Component {
     render() {
         return (
             <div>
-                <div>First name:<input id="input" name="Firstname" placeholder="First name..." onInput={this.handleInput} required ></input></div>
-                <div>Surname:<input id="input" name="Surname" placeholder="Surname..." onInput={this.handleInput} required ></input></div>
-                <div>Country:<input id="input" name="Country" placeholder="Country..." onInput={this.handleInput} required ></input></div>
-                <div>Owner:<input id="input" name="Owner" placeholder="Owner..." onInput={this.handleInput} required ></input></div>
-                <button onClick={this.addClient}>Add Client</button>
+                <div className="actionInputSections">First name:<input id="input" name="Firstname" placeholder="First name..." onInput={this.handleInput} required ></input></div>
+                <div className="actionInputSections">Surname:<input id="input" name="Surname" placeholder="Surname..." onInput={this.handleInput} required ></input></div>
+                <div className="actionInputSections">Country:<input id="input" name="Country" placeholder="Country..." onInput={this.handleInput} required ></input></div>
+                <div className="actionInputSections">Owner:<input id="input" name="Owner" placeholder="Owner..." onInput={this.handleInput} required ></input></div>
+                <div className="addButton" id='Button' onClick={this.addClient}>Add New Client</div>
             </div>
         );
     }
