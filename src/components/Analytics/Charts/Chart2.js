@@ -8,10 +8,10 @@ class Chart2 extends Component {
        return (
            <BarChart
                width={650}
-               height={250}
+               height={270}
                data={this.props.countriesSalesArr}
                margin={{
-                   top: 5, right: 30, left: 20, bottom: 5,
+                   top: 40, right: 30, left: 20, bottom: 5,
                }}
            >
                <CartesianGrid strokeDasharray="3 3" />

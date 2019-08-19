@@ -4,7 +4,7 @@ class Filter extends Component {
     constructor() {
         super()
         this.state = {
-            category: 'owner'
+            category: 'name'
         }
     }
 
@@ -14,7 +14,11 @@ class Filter extends Component {
 
     handlSelect = (e) => {
         let value = e.target.value
-        this.setState({ category: value.toLowerCase() })
+        if(value === 'sold'){
+            this.props.filter(true, 'sold')
+        } else {
+            this.setState({ category: value })
+        }
     }
 
     render() {
@@ -22,11 +26,11 @@ class Filter extends Component {
             <div className='mainFilter'>
                 <input id='input' value={this.props.value} placeholder="Search" onChange={this.handleInput}></input>
                 <select onInput={this.handlSelect}>
-                    <option>Owner</option>
-                    <option>Name</option>
-                    <option>Email</option>
-                    <option>Sold</option>
-                    <option>Country</option>
+                    <option value='name'>Name</option>
+                    <option value='owner'>Owner</option>
+                    <option value='emailType'>Email type</option>
+                    <option value='sold'>Sold</option>
+                    <option value='country'>Country</option>
                 </select>
             </div>
         );

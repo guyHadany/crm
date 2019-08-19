@@ -8,6 +8,14 @@ let moment = require('moment')
 
 class Charts extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+            filterCategory: "Country",
+            Category: ["Country", "Email", "Month (all time)", "Owner"]
+        }
+    }
+
     TopEmployees = () => {
         let arr1 = this.props.clients.filter(c => c.sold)
         let breakdown = {}
@@ -32,23 +40,56 @@ class Charts extends Component {
         return highestThree
     }
 
-    countryChart = () => {
-
+    filterChart = (value) => {
         let soldArray = this.props.clients.filter(c => c.sold)
-        let countries = {}
-
+        let categoryObj = {}
         for (let c of soldArray) {
-            if (countries[c.country]) {
-                countries[c.country] += 1
+            if (categoryObj[c[value]]) {
+                categoryObj[c[value]] += 1
             } else {
-                countries[c.country] = 1
+                categoryObj[c[value]] = 1
             }
         }
-
-        let countriesArr = Object.entries(countries)
-        let countriesSalesArr = countriesArr.map(c => { return { name: c[0], sales: c[1] } })
-        return countriesSalesArr
+        let categoryArr = Object.entries(categoryObj)
+        let categorySalesArr = categoryArr.map(c => { return { name: c[0], sales: c[1] } })
+        //  console.log(categorySalesArr);
+        return categorySalesArr
     }
+
+    filterMonthChart = () => {
+        let soldArray = this.props.clients.filter(c => c.sold)
+        let monthArr = soldArray.map(m => moment(m.firstContact).format("LL").split(" ")[0])
+        let categoryObj = {}
+        for (let c of monthArr) {
+            if (categoryObj[c]) {
+                categoryObj[c] += 1
+            } else {
+                categoryObj[c] = 1
+            }
+        }
+        let categoryArr = Object.entries(categoryObj)
+        let categorySalesArr = categoryArr.map(c => { return { name: c[0], sales: c[1] } })
+        console.log(categorySalesArr);
+        return categorySalesArr
+    }
+
+    // countryChart = () => {
+
+    //     let soldArray = this.props.clients.filter(c => c.sold)
+    //     let countries = {}
+
+    //     for (let c of soldArray) {
+    //         if (countries[c.country]) {
+    //             countries[c.country] += 1
+    //         } else {
+    //             countries[c.country] = 1
+    //         }
+    //     }
+
+    //     let countriesArr = Object.entries(countries)
+    //     let countriesSalesArr = countriesArr.map(c => { return { name: c[0], sales: c[1] } })
+    //     return countriesSalesArr
+    // }
 
     salesSince = () => {
 
@@ -70,25 +111,34 @@ class Charts extends Component {
         return newDaysArr
     }
 
-    firstContact = () => {
-        
+    handleInputCategory = (e) => {
+        const value = e.target.value
+        this.setState({ filterCategory: value })
     }
 
     render() {
 
+        let category = this.state.filterCategory == "Country" ? this.filterChart("country")
+            : this.state.filterCategory == "Email" ? this.filterChart("emailType")
+                : this.state.filterCategory == "Owner" ? this.filterChart("owner")
+                    : this.state.filterCategory == "Month (all time)" ? this.filterMonthChart() : null;
+
         return (
             <div className="chartsSection">
                 <div className="chart"><span className='chartTitle'>Top Employees</span>
-               <Chart1 TopEmployees={this.TopEmployees()} />
+                    <Chart1 TopEmployees={this.TopEmployees()} />
                 </div>
-                <div className="chart"><span className='chartTitle'>Sales by Country</span>
-                <Chart2 countriesSalesArr={this.countryChart()} />
+                <div className="chart"><span className="chartTitle">Sales by </span>
+                    <select name="filterChart" onInput={this.handleInputCategory}>
+                        {this.state.Category.map((c, i) => <option key={i}>{c} </option>)}
+                    </select>
+                    <Chart2 countriesSalesArr={category} />
                 </div>
                 <div className="chart"><span className='chartTitle'>Sales Since "last mounth"</span>
-               <Chart3 salesSince={this.salesSince()}/>
+                    <Chart3 salesSince={this.salesSince()} />
                 </div>
                 <div className="chart"><span className='chartTitle'>Client Acquisition</span>
-              <Chart4 />
+                    <Chart4 />
                 </div>
             </div>
         );

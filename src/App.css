@@ -1,37 +1,6 @@
-/* .App {
-  text-align: center;
+body{
+  font-family: "Lexend Deca", sans-serif;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
 .clients{
   margin: 5px;
  }
@@ -47,6 +16,7 @@
   grid-template-columns: repeat(7, 1fr);
   background-color: rgb(255, 215, 40);
   padding: 10px;
+  margin-top: 8px;
   box-shadow: 5px 5px 8px 0px rgba(126, 118, 118, 0.75);
  }
 
@@ -134,22 +104,20 @@
 }
 .updateSection{
  display: grid;
- grid-template-columns: 2fr 1fr 1fr;
+ grid-template-columns: 2fr 2fr 1fr;
  margin-top: 10px;
  width: 500px;
 }
 .actionButton{
- text-align: center;
- /* color: rgb(255, 215, 40); */
- background-color: rgb(255, 215, 40);
- margin-left:10px;
- padding-top: 2px;
-   padding-bottom: 2px;
-   border-radius: 10px
+  text-align: center;
+  background-color: rgb(255, 215, 40);
+  padding: 6px;
+  padding-bottom: 2px;
+  border-radius: 10px
 }
 .updateSectionSold{
  display: grid;
- grid-template-columns: 3fr 1fr;
+ grid-template-columns: 4fr 1fr;
  margin-top: 10px;
  width: 500px;
 }
@@ -284,9 +252,18 @@ select {
 }
 .mainFilter{
   padding: 5px;
-}
+  display: inline;
+ }
+
 .chartTitle{
   font-weight: bold;
+}
+
+#paginate-button{
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
 }
 
 

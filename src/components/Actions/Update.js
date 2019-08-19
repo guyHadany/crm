@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from './Input';
+import {ToastsContainer, ToastsStore} from 'react-toasts';
 
 class Update extends Component {
 
@@ -50,17 +51,26 @@ class Update extends Component {
 
     updateOwner = () => {
         if (!this.getClientId()) {
-            return alert('not existed client!')
+            return  ToastsStore.error("Please insert a client name")
         }
         this.props.update(this.getClientId(), 'owner', this.state.newOwner)
+        ToastsStore.success("updated!")
     }
 
     updateEmailType = () => {
+        if (!this.getClientId()) {
+            return  ToastsStore.error("Please insert a client name")
+        }
         this.props.update(this.getClientId(), 'emailType', this.state.newEmailType)
+        ToastsStore.success("updated!")
     }
 
     updateSale = () => {
+        if (!this.getClientId()) {
+            return  ToastsStore.error("Please insert a client name")
+        }
         this.props.update(this.getClientId(), 'sold', true)
+        ToastsStore.success("updated!")
     }
 
 
@@ -89,7 +99,7 @@ class Update extends Component {
                     <span>Declare sale!</span>
                     <span id='Button' className="actionButton" onClick={this.updateSale}>DECLARE</span>
                 </div>
-                <div></div>
+                <ToastsContainer store={ToastsStore}/>
             </div>
         );
     }

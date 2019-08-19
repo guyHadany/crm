@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Popup from "reactjs-popup";
+import {ToastsContainer, ToastsStore} from 'react-toasts';
 const moment = require('moment')
+
 
 class Client extends Component {
 
@@ -15,6 +17,7 @@ class Client extends Component {
 
     updateClient = () => {
         this.props.upatePopUpInfo(this.state.updateName, this.state.updateSurname, this.state.updateCountry, this.props.client._id)
+        return ToastsStore.success("Updated Client!")
     }
     handleInput = (e) => {
         const value = e.target.value
@@ -26,32 +29,11 @@ class Client extends Component {
         return str.charAt(0).toUpperCase() + str.slice(1)
     }
 
-    //     render() {
-    //         let client = this.props.client
-    //         let firstName = client.name.split(' ')[0]
-    //         let lastName = client.name.split(' ')[1]
-
-    //         return (
-    //             <div className='client'>
-    //                 <div>{firstName}</div>
-    //                 <div>{lastName}</div>
-    //                 <div>{client.country}</div>
-    //                 <div>{moment(client.firstContact).format('L')}</div>
-    //                 <div>{client.emailType ? client.emailType : 'Not sent!'}</div>
-    //                 <div>{client.sold ? <i className="fas fa-check"></i> : <i className="fas fa-times"></i>}</div>
-    //                 <div>{client.owner}</div>
-    //             </div>
-    //         );
-    //     }
-    // }
-
     render() {
         let client = this.props.client
         let firstName = client.name.split(' ')[0]
         let lastName = client.name.split(' ')[1]
 
-        // let name = this.props.client.name.split(' ')[0]
-        // let lastName = this.props.client.name.split(' ')[1]
         return (
             <Popup trigger={
                 <div className="client" onClick={this.popUp}>
@@ -77,6 +59,7 @@ class Client extends Component {
                         <div className="actions">
                         <div id="Button" onClick={this.updateClient} className="popButton"> Update </div>
                         </div>
+                        <ToastsContainer store={ToastsStore}/>
                     </div>
                 )}
             </Popup>
