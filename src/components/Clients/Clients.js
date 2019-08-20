@@ -28,6 +28,22 @@ class Clients extends Component {
         })
     }
 
+
+    getClientsWithFilter = () => {
+        return this.props.clients
+            .filter(c => c[this.state.category] === null ? null :
+                this.state.category === "sold" ? c[this.state.category] === true : c[this.state.category].toLowerCase().includes(this.state.input.toLowerCase()))
+            .map((c, i) => <Client key={i} client={c} upatePopUpInfo={this.props.upatePopUpInfo} />)
+    }
+
+    getClientWithPaginate = () => {
+        return this.props.clients
+            .filter(c => this.props.clients.indexOf(c) >= this.state.lowerIndex && this.props.clients.indexOf(c) < this.state.higherIndex)
+            .map((c, i) => <Client key={i} client={c} upatePopUpInfo={this.props.upatePopUpInfo} />)
+    }
+
+
+
     filter = (input, category) => {
         this.setState({
             category,
@@ -41,16 +57,21 @@ class Clients extends Component {
             <div className='clients'>
                 <Filter filter={this.filter} />
                 <span> You have {this.props.clients.length} Clients</span>
-                <div id="paginate-button">
+                {this.state.input ? null :
+                    <div id="paginate-button">
+                        <span onClick={this.paginate}>{"<"}</span><span> {this.state.lowerIndex}-{this.state.higherIndex} </span><span onClick={this.paginate}>{">"}</span>
+                    </div>}
+                {/* <div id="paginate-button">
                     <span onClick={this.paginate}>{"<"}</span><span> {this.state.lowerIndex}-{this.state.higherIndex} </span><span onClick={this.paginate}>{">"}</span>
-                </div>
+                </div> */}
                 <Header />
-                {this.props.clients
+                {this.state.input ? this.getClientsWithFilter() : this.getClientWithPaginate()}
+                {/* {this.props.clients
                     .filter(c => c[this.state.category] === null ? null :
                         this.state.category === 'sold' ? c[this.state.category] === true :
                             c[this.state.category].toLowerCase().includes(this.state.input.toLowerCase()))
                     .filter(c => this.props.clients.indexOf(c) >= this.state.lowerIndex && this.props.clients.indexOf(c) < this.state.higherIndex)
-                    .map((c, i) => <Client key={i} client={c} upatePopUpInfo={this.props.upatePopUpInfo} />)}
+                    .map((c, i) => <Client key={i} client={c} upatePopUpInfo={this.props.upatePopUpInfo} />)} */}
             </div>
         );
     }
