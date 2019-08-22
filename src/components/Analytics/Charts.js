@@ -52,7 +52,6 @@ class Charts extends Component {
         }
         let categoryArr = Object.entries(categoryObj)
         let categorySalesArr = categoryArr.map(c => { return { name: c[0], sales: c[1] } })
-        //  console.log(categorySalesArr);
         return categorySalesArr
     }
 
@@ -72,24 +71,6 @@ class Charts extends Component {
         console.log(categorySalesArr);
         return categorySalesArr
     }
-
-    // countryChart = () => {
-
-    //     let soldArray = this.props.clients.filter(c => c.sold)
-    //     let countries = {}
-
-    //     for (let c of soldArray) {
-    //         if (countries[c.country]) {
-    //             countries[c.country] += 1
-    //         } else {
-    //             countries[c.country] = 1
-    //         }
-    //     }
-
-    //     let countriesArr = Object.entries(countries)
-    //     let countriesSalesArr = countriesArr.map(c => { return { name: c[0], sales: c[1] } })
-    //     return countriesSalesArr
-    // }
 
     salesSince = () => {
 

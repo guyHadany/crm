@@ -21,15 +21,6 @@ class Badges extends Component {
         let max = Math.max(...arr);
         let hottestCountry = Object.keys(breakdown).find(key => breakdown[key] === max);
         return hottestCountry
-        // let arr = Object.entries(breakdown)
-        // let counter = 0
-        // let hottestCountry
-        // for (let a of arr) {
-        //     if (a[1] > counter) {
-        //         counter = a[1]
-        //         hottestCountry = a[0]
-        //     }
-        // }
     }
 
     render() {

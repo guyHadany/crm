@@ -193,7 +193,7 @@ body{
   font-size: 20px;
   padding: 5px;
 }
-.popButton{
+/* .popButton{
   background-color: rgb(255, 215, 40);
   width: 38vw;
   padding: 5px;
@@ -201,7 +201,29 @@ body{
   font-weight: bold;
   color: black;
   font-size: 18px;
+} */
+
+.deleteButton{
+  background-color: rgb(212, 67, 23);
+  width: 38vw;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
 }
+
+.updateButton{
+  background-color: rgb(255, 215, 40);
+  width: 38vw;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
+  margin-left: 10vw;
+}
+
 #Button:hover {
   background-color: #7bdf39;
 }

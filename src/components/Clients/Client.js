@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Popup from "reactjs-popup";
-import {ToastsContainer, ToastsStore} from 'react-toasts';
+import { ToastsContainer, ToastsStore } from 'react-toasts';
 const moment = require('moment')
 
 
@@ -16,6 +16,7 @@ class Client extends Component {
     }
 
     updateClient = () => {
+        console.log(this.state.updateName)
         this.props.upatePopUpInfo(this.state.updateName, this.state.updateSurname, this.state.updateCountry, this.props.client._id)
         return ToastsStore.success("Updated Client!")
     }
@@ -27,6 +28,11 @@ class Client extends Component {
 
     capitalFirstChart(str) {
         return str.charAt(0).toUpperCase() + str.slice(1)
+    }
+
+    deleteClient = () => {
+        this.props.deleteClient(this.props.client._id)
+        console.log(this.state.updateName)
     }
 
     render() {
@@ -52,14 +58,15 @@ class Client extends Component {
                             &times;</a>
                         <div className="header"> Update Client </div>
                         <div className="content">
-                        <div className="contentPopup"><span>Name:</span><input placeholder=" Update Name.." className="input" name="updateName" type="text" onInput={this.handleInput}></input></div>
-                         <div className="contentPopup"><span>Surname:</span> <input placeholder=" Update Suname.." name="updateSurname" type="text" onInput={this.handleInput}></input></div>
-                         <div className="contentPopup" ><span>country:</span> <input placeholder=" Update Country.." name="updateCountry" type="text" onInput={this.handleInput}></input></div>
+                            <div className="contentPopup"><span>Name:</span><input placeholder=" Update Name.." className="input" name="updateName" type="text" onInput={this.handleInput}></input></div>
+                            <div className="contentPopup"><span>Surname:</span> <input placeholder=" Update Suname.." name="updateSurname" type="text" onInput={this.handleInput}></input></div>
+                            <div className="contentPopup" ><span>country:</span> <input placeholder=" Update Country.." name="updateCountry" type="text" onInput={this.handleInput}></input></div>
                         </div>
                         <div className="actions">
-                        <div id="Button" onClick={this.updateClient} className="popButton"> Update </div>
+                            <span id="Button" onClick={this.deleteClient} className="deleteButton"> Delete </span>
+                            <span id="Button" onClick={this.updateClient} className="updateButton"> Update </span>
                         </div>
-                        <ToastsContainer store={ToastsStore}/>
+                        <ToastsContainer store={ToastsStore} />
                     </div>
                 )}
             </Popup>
